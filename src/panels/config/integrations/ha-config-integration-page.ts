@@ -936,7 +936,7 @@ class HaConfigIntegrationPage extends SubscribeMixin(LitElement) {
           ${item.supports_subentries
             ? html`<ha-md-menu-item
                 @click=${this._addSubEntry}
-                .entryId=${item.entry_id}
+                .entry=${item}
                 graphic="icon"
               >
                 <ha-svg-icon slot="start" .path=${mdiPlus}></ha-svg-icon>
@@ -1589,8 +1589,8 @@ class HaConfigIntegrationPage extends SubscribeMixin(LitElement) {
   }
 
   private async _addSubEntry(ev) {
-    showSubConfigFlowDialog(this, {
-      startFlowHandler: ev.target.entryId,
+    showSubConfigFlowDialog(this, ev.target.entry, {
+      startFlowHandler: ev.target.entry.entry_id,
     });
   }
 
